@@ -1,7 +1,7 @@
 55 == 55
 "Alex" == "alex"
 55 == "55"
-55 == 55.0
+55 == 33.0
 
 my_name_is = True #boolean
 my_name = "Oleksii"
@@ -94,4 +94,5 @@ list_values = [1, 2, 3, 4, 5]
 # list_values.append(6)
 # print("list_values after update",id(list_values))
 # print(id(list_values[4]))
+
 
