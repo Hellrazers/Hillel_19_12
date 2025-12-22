@@ -2,7 +2,7 @@
 "Alex" == "alex"
 55 == "55"
 55 == 33.0
-"Alex" == "alex"
+"alex" == "alex"
 my_name_is = True #boolean
 my_name = "Oleksii"
 my_age = 28 # int
