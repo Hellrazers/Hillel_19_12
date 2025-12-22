@@ -1,7 +1,7 @@
 55 == 55
 "Alex" == "alex"
 55 == "55"
-55 == 55.0
+33 == 55.0
 
 my_name_is = True #boolean
 my_name = "Oleksii"
