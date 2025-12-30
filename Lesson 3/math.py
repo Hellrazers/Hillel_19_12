@@ -38,3 +38,13 @@ my_list.append(4)
 print(my_list)
 my_tuple = (1, 2)
 my_tuple = (1, 2, 3)
+
+lst = [1, 2, 3, 3, 4, 4]
+
+my_set = set()
+
+for element in lst:
+    if lst.count(element) > 1:
+        print(element)
+
+print(my_set)
