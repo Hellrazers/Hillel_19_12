@@ -24,7 +24,7 @@ class Cat(Animal):
     @staticmethod
     def make_sound():
         print("MRRR...")
-
+        # return "MRRR..."
 class DOG(Animal):
     ANIMAL_TYPE = "Dog"
 
@@ -43,7 +43,7 @@ class DOG(Animal):
     @staticmethod
     def make_sound():
         print("GRRR...")
-
+        # return "GRRR..."
 
 # cat = Cat('cat', 25, 34)
 # dog = DOG('dog', 45, 56)
@@ -51,20 +51,21 @@ class DOG(Animal):
 # print()
 # print(dog)
 
-class CatDog( Cat, DOG ):
-    ANIMAL_TYPE = "CatDog"
+    class CatDog( Cat, DOG ):
+        ANIMAL_TYPE = "CatDog"
 
-    def __init__(self, name, age, value, value2):
-        super().__init__(name, age, value, value2)
-        # Cat.__init__(self, name, age, value)
-        # DOG.__init__(self, name, age, value2)
+        def __init__(self, name, age, value, value2):
+            super().__init__(name, age, value, value2)
+            # Cat.__init__(self, name, age, value)
+            # DOG.__init__(self, name, age, value2)
 
-    @staticmethod
-    def make_sound():
-        Cat.make_sound()
-        print(Cat.ANIMAL_TYPE)
-        DOG.make_sound()
-#
+        @staticmethod
+        def make_sound():
+            Cat.make_sound()
+            print(Cat.ANIMAL_TYPE)
+            DOG.make_sound()
+            return "CATDOG"
+
 
 def test_name_in_classes():
     print('Starting our test')
@@ -76,9 +77,12 @@ def test_name_in_classes():
 
     print('Ending our test')
 
+catDOG =CatDog("Cat", 15, 2, 4)
+print(catDOG.make_sound())
+# print(catDOG.__str__())
 
 
-test_name_in_classes()
+# test_name_in_classes()
 # class DogCat( DOG, Cat ):
 #     ANIMAL_TYPE = "CatDog"
 #
@@ -92,9 +96,9 @@ test_name_in_classes()
 #         Cat.make_sound()
 #         print(Cat.ANIMAL_TYPE)
 #         DOG.make_sound()
-print(CatDog.mro(), 'CatDog( Cat, DOG ) спочаттку Cat потім Dog')
-
-catDOG = CatDog("Cat", 15, 2, 4)
+# print(CatDog.mro(), 'CatDog( Cat, DOG ) спочаттку Cat потім Dog')
+#
+# catDOG = CatDog("Cat", 15, 2, 4)
 
 
 # print(DogCat.mro(), 'DogCat( DOG, Cat ) спочаттку Dog потім Cat')

@@ -7,15 +7,15 @@
 # #
 # # pass
 # #
-# def multy_numbers (a: str, b: int = 15) -> str:
-#     """
-#
-#     :param a: enter your string (str)
-#     :param b: enter your number (int)
-#     :return: a * b
-#     """
-#     return a * b
-#
+def multy_numbers (a: str, b: int = 15) -> str:
+    """
+
+    :param a: enter your string (str)
+    :param b: enter your number (int)
+    :return: a * b
+    """
+    return a * b
+
 # # sum = multy_numbers(15, 3)
 # # print(sum)
 # #

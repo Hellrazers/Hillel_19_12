@@ -1,6 +1,6 @@
 # from import lesson_11.expamle_error.OurError
 
-from lesson_11.expamle_error import OurError
+from Lessons.lesson_11.expamle_error import OurError
 
 our_error = OurError('id',1)
 

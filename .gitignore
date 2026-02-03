@@ -1,0 +1,31 @@
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+*.xml
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+/.pytest_cache/
+*.log
+
+#allure reports dir
+allure_results/
+allure-results/
+allure-report/
+
+data_for_tests/test_schema
+data_for_tests/swagger.json
+
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow
+__pypackages__/
+
+#Project ignore
+/.idea/
+
+.DS_Store
