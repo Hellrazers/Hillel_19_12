@@ -27,7 +27,7 @@ class MyTest(unittest.TestCase):
     def tearDown(self):
         # print("Tear Down")
         # if self.result is not None:
-        #     print(f"Our test finish with this result {self.result}")
+        #     print(f"Our tests finish with this result {self.result}")
         pass
     def test_example_pass(self):
         # print('test_example_pass')

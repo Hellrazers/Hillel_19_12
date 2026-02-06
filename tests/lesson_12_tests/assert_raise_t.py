@@ -8,6 +8,8 @@ class TestDivision(unittest.TestCase):
         with self.assertRaises(ZeroDivisionError):
             result = divide(5, 0)
 
+        self.assertHasAttr(student, "average_change", "test_test is failed")
+
         with self.assertRaises(TypeError):
             result = divide(5, "1")
 

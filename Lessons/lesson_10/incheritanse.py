@@ -68,14 +68,14 @@ class DOG(Animal):
 
 
 def test_name_in_classes():
-    print('Starting our test')
+    print('Starting our tests')
     cat_dog = CatDog("Cat Dog", 10, 20, 54)
 
     assert cat_dog.name == "Cat Dog"
 
     assert cat_dog.age == 10
 
-    print('Ending our test')
+    print('Ending our tests')
 
 catDOG =CatDog("Cat", 15, 2, 4)
 print(catDOG.make_sound())
