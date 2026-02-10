@@ -7,7 +7,7 @@ import requests
 BASE_URL = 'http://127.0.0.1:7070/auth'
 
 
-@pytest.mark.positive
+@pytest.mark.positive1
 def auth_login_positive_200():
     content = {'username': 'admin', 'password': 'admin'}
     response = requests.post(f'{BASE_URL}', json=content)
