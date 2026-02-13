@@ -6,33 +6,39 @@ import pytest
 import requests
 from dotenv import load_dotenv
 
-load_dotenv()
+# load_dotenv()
 logger = logging.getLogger("tests.fixtures")
 # logger.propagate = False
 
 logger_request = logging.getLogger("tests.request")
+load_dotenv()
 
+BASE_URL = os.getenv("API_URL", 'https://qauto.forstudy.space/')
+LOGIN = os.getenv("LOGIN")
+PASSWORD = os.getenv("PASSWORD")
 
-BASE_URL = "https://qauto.forstudy.space/"
 
 @pytest.fixture
 def auth_login():
     logger.info('-'*80)
     logger.info('Setting up OUR FIXTURE[get_car]')
     logger.info('-'*80)
-    content = {'username': 'admin', 'password': 'admin'}
+    print(BASE_URL)
+    print(LOGIN)
+    print(PASSWORD)
+    content = {'email': LOGIN, 'password': PASSWORD, 'remember': 'false'}
 
     logger.info(f'request')
 
-    response = requests.post(f'{BASE_URL}', json=content)
+    response = requests.post(f'{BASE_URL}api/auth/signin', json=content)
     assert response.status_code == 200, "Content was not created"
     headers = {'Autroeization': "Bearer token_256"}
     return response, headers
 
 
 USER_CREDENTIALS = {
-"email": "nedzelnytskyidev+hillel02026@gmail.com",
-"password": "AYf3JtDQnAcMbnc",
+"email": LOGIN,
+"password": PASSWORD,
 "remember": 'false'
 }
 CAR_CREDENTIALS = {
