@@ -1,7 +1,7 @@
 import logging
 import os
 import sys
-
+import pathlib
 import pytest
 import requests
 from dotenv import load_dotenv
@@ -12,7 +12,6 @@ logger = logging.getLogger("tests.fixtures")
 
 logger_request = logging.getLogger("tests.request")
 load_dotenv()
-
 BASE_URL = os.getenv("API_URL", 'https://qauto.forstudy.space/')
 LOGIN = os.getenv("LOGIN")
 PASSWORD = os.getenv("PASSWORD")
@@ -20,6 +19,9 @@ PASSWORD = os.getenv("PASSWORD")
 
 @pytest.fixture
 def auth_login():
+    print(f"platform.system(): {sys.platform.system()}")
+    print(f"os.name: {os.name}")
+    print(f"sys.platform: {sys.platform}")
     logger.info('-'*80)
     logger.info('Setting up OUR FIXTURE[get_car]')
     logger.info('-'*80)
@@ -51,6 +53,9 @@ CAR_CREDENTIALS = {
 
 @pytest.fixture
 def api():
+    logger.info(f"platform.system(): {sys.platform}")
+    logger.info(f"os.name: {os.name}")
+    logger.info(f"sys.platform: {sys.platform}")
     logger.info('-'*80)
     logger.info('Setting up OUR FIXTURE[api]')
     logger.info('-'*80)
