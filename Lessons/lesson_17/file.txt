@@ -1,0 +1,5 @@
+git clone {branch}
+python -m venv .venv -CI/CD створить віртальне середовище
+.\\.venv\\Scripts\\activate - активує його
+pip install -r requrement.txt
+

@@ -1,9 +1,16 @@
+import pathlib
+import sys
 import unittest
 
 
+# from Lessons import *
+# from Lessons.lesson_17.file_1 import File as File_1
+# from Lessons.lesson_17.file_2 import File as File_2
+#
+#
+#
+# File_1.read_file()
 
-import sys
-import pathlib
 
 # DATA_DIR = str(pathlib.Path(__file__).resolve().parents[2])
 DATA_DIR = str(pathlib.Path(__file__).parent.parent.parent)
