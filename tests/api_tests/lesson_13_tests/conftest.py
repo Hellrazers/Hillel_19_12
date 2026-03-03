@@ -51,7 +51,7 @@ CAR_CREDENTIALS = {
 # AUTH = ("guest", "welcome2qauto")
 
 
-@pytest.fixture
+@pytest.fixture(scope='module')
 def api():
     logger.info(f"platform.system(): {sys.platform}")
     logger.info(f"os.name: {os.name}")
@@ -75,7 +75,9 @@ def api():
     logger_request.info(f'Status code: {response.status_code}')
 
 
-@pytest.fixture
+
+
+@pytest.fixture(scope='session')
 def add_car_and_delete(api):
     headers = api
     logger.info('-'*80)
