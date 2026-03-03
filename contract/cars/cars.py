@@ -1,6 +1,8 @@
 from dataclasses import asdict
 
 from lib.models.cars.request_car_models import CarRequestPost
+from lib.models.cars.response_car_models import CarResponseModel
+from lib.response_model import ResponseModel
 from tests.api_tests.api_client import ApClients
 
 
@@ -11,8 +13,12 @@ class Cars(ApClients):
         self.api_client = api_client
         self.path = '/api/cars'
 
-    def post_cars(self, json:dict =  CarRequestPost()):
+    # Respons model here
+    def post_cars_with_resp_model(self, json:dict =  CarRequestPost()):
+        response = self.api_client._post(endpoint=self.path, json=asdict(json))
+        return CarResponseModel(ResponseModel(response))
 
+    def post_cars_no_model(self, json:dict =  CarRequestPost()):
         return self.api_client._post(endpoint=self.path, json=asdict(json))
 
     def put_cars_update_by_id(self, json: dict, item_id: str):

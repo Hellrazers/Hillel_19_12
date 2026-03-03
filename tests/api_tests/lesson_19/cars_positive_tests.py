@@ -10,10 +10,28 @@ def test_get_user_profile(api_base):
     assert response.status_code == 200
 
 
-def test_create_car_post(api_base):
+def test_create_car_post_with_resp(api_base):
     api = Cars(api_base)
 
-    response = api.post_cars()
+    response = api.post_cars_with_resp_model()
+    assert response.status_code == 201
+    car_id = response.data.id
+
+    response_car_by_id = api.get_car_by_id(car_id)
+    assert response_car_by_id.status_code == 200
+
+
+    response_delete = api.delete_car_by_id(car_id)
+    assert response_delete.status_code == 200
+
+
+    response_car_by_id_after_delete = api.get_car_by_id(car_id)
+    assert response_car_by_id_after_delete.status_code == 404
+
+def test_create_car_post_no_resp(api_base):
+    api = Cars(api_base)
+
+    response = api.post_cars_no_model()
     assert response.status_code == 201
     car_id = response.json()['data']['id']
 
@@ -27,7 +45,6 @@ def test_create_car_post(api_base):
 
     response_car_by_id_after_delete = api.get_car_by_id(car_id)
     assert response_car_by_id_after_delete.status_code == 404
-
 
 def test_create_car_get_with_fix(create_cars):
     api_base, car_id, _ = create_cars
