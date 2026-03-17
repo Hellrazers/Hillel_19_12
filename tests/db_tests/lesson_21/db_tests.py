@@ -48,7 +48,8 @@ def test_del_user(cursor):
     cursor.execute(f'''INSERT INTO public.users ("name", jobs) VALUES ('{name_er}', '{jobs_er}') RETURNING id;''')
     user_id = cursor.fetchone()[0]  # -> ({id}, )
 
-    cursor.execute(f'''DELETE FROM users WHERE id = {user_id} returning id;''')
+    cursor_extcute_str = f'''DELETE FROM users WHERE id = {user_id} returning id;'''
+    cursor.execute(cursor_extcute_str)
     user_id_delete = cursor.fetchone()[0]
     assert user_id == user_id_delete
 

@@ -4,14 +4,10 @@ from lib.response_model import ResponseModel
 
 
 class CarsModel:
-    id: str
-    carBrandId:str
-    carModelId:str
-
 
     def __init__(self, data: dict):
-        self.id = data.get("id")
-        self.carBrandId = data.get("carBrandId")
+        self.id: str = data.get("id")
+        self.carBrandId = data.get("carBrandId") #['carBrandId]
         self.carModelId = data.get("carModelId")
 
 

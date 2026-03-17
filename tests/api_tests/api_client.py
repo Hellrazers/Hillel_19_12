@@ -1,13 +1,15 @@
+import json
+import logging
 import os
-
 import requests
 from dotenv import load_dotenv
+from tests.utils import log_request
 
 load_dotenv()
+logger = logging.getLogger("test")
 
 class ApClients:
     def __init__(self):
-
         self.base_url = os.getenv('UI_URL')
         self.login = os.getenv('LOGIN')
         self.password = os.getenv('PASSWORD')
@@ -29,23 +31,40 @@ class ApClients:
         assert response.status_code == 200, "Something problem with token"
         self.__token = response.cookies['sid']
 
-
-    def _get(self, endpoint, params: dict=None):
+    @log_request
+    def _get(self, endpoint, params: dict = None):
         self._authenticate()
-        return  self.session.get(f'{self.base_url}{endpoint}', params=params)
+        # base_url = https://qauto.forstudy.space
+        #endpoint = /api/users/current
+        our_path= f'{self.base_url}{endpoint}'
+        # logger.info(f"-> Method: GET | url: {our_path}")
+        response = self.session.get(our_path, params=params)
 
-    def _post(self, endpoint, json=None):
+        return response
+
+    @log_request
+    def _post(self, endpoint, json_payload=None):
         self._authenticate()
+        our_path= f'{self.base_url}{endpoint}'
+        # logger.info(f"-> Method: POST | url: {our_path} | payload: {json.dumps(json_payload)} {json_payload}")
+        response = self.session.post(f'{our_path}', json=json_payload)
+        # if response.status_code in [200, 201]:
+        #     logger.info(f"<- Status code: {response.status_code} | response time : {response.elapsed.total_seconds() * 1000} ms")
+        # else:
+        #     logger.info(
+        #         f"<- Status code: {response.status_code} | Error message: '{response.json().get('message')}' | response time : {response.elapsed.total_seconds() * 1000} ms")
+        return response
 
-        return self.session.post(f'{self.base_url}{endpoint}', json=json)
-
+    @log_request
     def _put(self, endpoint, json=None):
         self._authenticate()
 
         return self.session.put(f'{self.base_url}{endpoint}', json=json)
 
+    @log_request
     def _delete(self, endpoint):
         self._authenticate()
+        response = self.session.delete(f'{self.base_url}{endpoint}')
 
-        return self.session.delete(f'{self.base_url}{endpoint}')
 
+        return response

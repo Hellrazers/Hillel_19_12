@@ -5,15 +5,17 @@ from faker import Faker
 
 fake = Faker(locale='uk_UA')
 
+
+# @pytest.mark.skip('jirra-link')
 @pytest.mark.negative
 def test_create_car_404(api_base):
-    car_id = 1231231231
+    car_id = '`'
     api = Cars(api_base)
     response_car_by_id = api.get_car_by_id(car_id)
     assert response_car_by_id.status_code == 404
 
 
-
+@pytest.mark.skip('wait task: ')
 def test_faker():
     print(fake.first_name())
     print(fake.email())
