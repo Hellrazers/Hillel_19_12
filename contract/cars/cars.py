@@ -34,7 +34,9 @@ class Cars(ApClients):
     def get_car_by_id(self, item_id: str):
         return self.api_client._get(endpoint=f'{self.path}/{item_id}')
 
-    def delete_car_by_id(self, item_id: str):
-        response = self.api_client._delete(endpoint=f'{self.path}/{item_id}', exp_status_code={exp_status_code})
-        # assert response.status_code == exp_status_code, "Something problem with token"
+    def delete_car_by_id(self, item_id: str, exp_code:int = 200):
+        response = self.api_client._delete(endpoint=f'{self.path}/{item_id}', exp_code=exp_code)
+
+
+
         return response

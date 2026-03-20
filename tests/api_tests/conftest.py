@@ -5,28 +5,8 @@ from tests.api_tests.api_client import ApClients
 from tests.lesson_12_tests.mock_tests import APIClient
 
 
-@pytest.fixture(scope='module')
-def api_base():
-    return ApClients()
 
 
-
-@pytest.fixture
-def create_cars(api_base):
-    api = Cars(api_base)
-    data = {
-        "carBrandId": 1,
-        "carModelId": 1,
-        "mileage": 122
-    }
-    response = api.post_cars(json=data)
-    assert response.status_code == 201
-    car_id = response.json()['data']['id']
-
-    yield api_base, car_id, response
-
-    response_delete = api.delete_car_by_id(car_id)
-    assert response_delete.status_code == 200
 
 
 
@@ -43,13 +23,13 @@ def create_car_fixture(api_base):
     api = Cars(api_base)
 
     response = api.post_cars_no_model()
-    assert response.status_code == 400
+    # assert response.status_code == 400
     assert response.status_code == 201
     car_id = response.json()['data']['id']
 
     response_car_by_id = api.get_car_by_id(car_id)
     assert response_car_by_id.status_code == 200
-    return api, response_car_by_id
+    return api, car_id
 
 @pytest.fixture
 def delete_car_fixture(api, response_car_by_id):

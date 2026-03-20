@@ -12,10 +12,10 @@ def test_get_user_profile(api_base):
 
 # @pytest.mark.skip('')
 def test_create_car_post_with_resp(create_car_fixture):
-    api, car_id = create_car_fixture
+    api, car_id  = create_car_fixture
 
     response_delete = api.delete_car_by_id(car_id)
-    assert response_delete.delete.status_code == 200
+    # assert response_delete.delete.status_code == 200
     response_car_by_id_after_delete = api.get_car_by_id(car_id)
 
 #
@@ -38,6 +38,7 @@ def test_create_car_get_with_fix(create_cars):
     assert response_car_by_id.json()['data']['carBrandId'] == 1
     assert response_car_by_id.json()['data']['carModelId'] == 1
     assert response_car_by_id.json()['data']['initialMileage'] == 122
+
 
 
 # def test_get_user_(api_base):

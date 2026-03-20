@@ -9,11 +9,12 @@ def log_request(func):
 
     @functools.wraps(func)
     # _get _post . -> wrapper
-    def wrapper(self, endpoint, *args, **kwargs):
+    def wrapper(self, endpoint,  *args, **kwargs):
         # 1. Підготовка шляху (для логування)
         path = f"{self.base_url.rstrip('/')}/{endpoint.lstrip('/')}"
         method_name = func.__name__.replace('_', '').upper()
         #_get _post _put .. -> GET PUT
+
         if method_name in ["GET", "DELETE"]:
             logger.info(f"→ Method: {method_name} | Url: {path}")
         else:

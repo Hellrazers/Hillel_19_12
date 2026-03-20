@@ -62,9 +62,10 @@ class ApClients:
         return self.session.put(f'{self.base_url}{endpoint}', json=json)
 
     @log_request
-    def _delete(self, endpoint):
+    def _delete(self, endpoint, exp_code = 200):
         self._authenticate()
         response = self.session.delete(f'{self.base_url}{endpoint}')
+        assert response.status_code == exp_code, "Something problem with token"
 
 
         return response
