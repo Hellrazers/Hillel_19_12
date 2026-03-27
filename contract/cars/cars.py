@@ -28,7 +28,7 @@ class Cars(ApClients):
     def put_cars_update_by_id(self, json: dict, item_id: str):
         return self.api_client._put(endpoint=f'{self.path}/{item_id}', json=json)
 
-    def get_cars(self, params: dict):
+    def get_cars(self, params: dict = None):
         return self.api_client._get(endpoint=self.path, params=params)
 
     def get_car_by_id(self, item_id: str):
