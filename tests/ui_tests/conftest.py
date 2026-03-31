@@ -8,7 +8,6 @@ load_dotenv()
 
 auth_user = os.getenv('AUTH_BASIC_USER')
 auth_password = os.getenv('AUTH_BASIC_PASSWORD')
-base_url = os.getenv('UI_URL')
 login = os.getenv('LOGIN')
 password = os.getenv('PASSWORD')
 
@@ -20,13 +19,26 @@ def browser_context_args(browser_context_args):
         "http_credentials": {
             "username": auth_user,
             "password": auth_password
-        }
+        },
+        'base_url' : os.getenv('UI_URL'), #->     page.goto('https://qauto.forstudy.space/panel/garage')
     }
 
 
 
 @pytest.fixture(scope="function")
 def ui_login(page: Page):
+    page.goto('/')
+    page.locator('//button[@class="btn btn-outline-white header_signin"]').click()
+    page.get_by_role("textbox", name="Email").fill(login)
+    assert page.get_by_role("textbox", name="Email").input_value() == login # check if input field is fill 'STR'
+    page.get_by_role("textbox", name="Password").fill(password)
+    assert page.get_by_role("textbox", name="Password").input_value() == password
+    page.get_by_role("button", name="Login").click()
+    element_notify = page.locator('//div[@class="alert alert-success"]/p')
+    expect(element_notify).to_have_text("You have been successfully logged in")
+    assert element_notify.inner_text() == "You have been successfully logged in"
+    page.reload()
+    return page
     #https://qauto.forstudy.space -> [, 'qauto.forstudy.space]
     # context = browser.new_context()
     # create a new page inside context.
@@ -35,15 +47,21 @@ def ui_login(page: Page):
     # pass: welcome2qauto
     # page.goto(f"https://{auth_user}:{auth_password}@{base_url.split('https://')[1]}/")
 
-    page.goto(base_url)
+
     # page.get_by_role("button", name="Sign In").click()
     # page.locator("button.btn.btn-outline-white.header_signin").click()
-    page.locator('//button[@class="btn btn-outline-white header_signin"]').click()
-    page.get_by_role("textbox", name="Email").fill("nedzelnytskyidev+hillel02026@gmail.com")
-    page.get_by_role("textbox", name="Password").fill("AYf3JtDQnAcMbnc")
-    page.get_by_role("button", name="Login").click()
-    element_notify = page.locator('//div[@class="alert alert-success"]/p')
-    expect(element_notify).to_have_text("You have been successfully logged in")
-    assert element_notify.inner_text() == "You have been successfully logged in"
 
-    return page
+    # expect(element_notify).to_be_hidden() | fix -> page.reload()
+
+
+
+@pytest.fixture
+def del_car(page: Page):
+    car_ids_list: list = []
+    yield car_ids_list
+    for car_id in car_ids_list:
+        response_delete = page.request.delete(f'api/cars/{car_id}')
+        if response_delete.status == 200:
+            print(f"Successfully deleted car {car_id}")
+        else:
+            print(f'something went wrong with status code {response_delete.status}')

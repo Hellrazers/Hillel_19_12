@@ -1,8 +1,6 @@
 #
 # let el = $('#addCarBrand');
 # console.log(el.options[el.selectedIndex].text)
-
-
 #
 
 
@@ -22,3 +20,16 @@
 
 
 # playwright show-trace my_results/*/trace.zip
+
+#evaluate("el => window.getComputedStyle(el)
+
+#.wait_for_load_state("networkidle")
+# "base_url": base_url,
+
+
+# with page.expect_response("**/api/cars") as response_info:
+#     # Твоя дія, яка тригерить POST запит
+#
+#
+# # Отримуємо об'єкт відповіді
+# response_id = response_info.value
