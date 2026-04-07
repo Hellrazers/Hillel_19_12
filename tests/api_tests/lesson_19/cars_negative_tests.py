@@ -11,7 +11,9 @@ fake = Faker(locale='uk_UA')
 def test_create_car_404(api_base):
     car_id = '`'
     api = Cars(api_base)
-    response_car_by_id = api.get_car_by_id(car_id)
+    response_car_by_id = api.get_car_by_id_py(car_id)
+    assert response_car_by_id.reason == 'Not Found'
+    response_cars = api.get_cars_py()
     assert response_car_by_id.status_code == 404
 
 

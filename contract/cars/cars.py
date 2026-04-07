@@ -1,13 +1,16 @@
 import logging
 from dataclasses import asdict
 
-from Lessons.lesson_6.for_example import response
+from lib.models.base_pydantic import BaseResponseModel, ListResponseModel
 from lib.models.cars.request_car_models import CarRequestPost
-from lib.models.cars.response_car_models import CarResponseModel
+from lib.models.cars.response_car_models import CarResponseModel, CarsRespModelPydantic
 from lib.response_model import ResponseModel
 from tests.api_tests.api_client import ApClients
 
 logger = logging.getLogger('api')
+
+
+
 
 class Cars(ApClients):
 
@@ -16,7 +19,17 @@ class Cars(ApClients):
         self.api_client = api_client
         self.path = '/api/cars'
 
-    # Respons model here
+
+    def get_car_by_id_py(self, item_id: str):
+        resp =  self.api_client._get(endpoint=f'{self.path}/{item_id}')
+        resp_valid =  BaseResponseModel[CarsRespModelPydantic].from_response(resp)
+        return resp_valid
+
+    def get_cars_py(self, params: dict = None):
+        resp = self.api_client._get(endpoint=self.path, params=params)
+        resp_valid =  ListResponseModel[CarsRespModelPydantic].from_response(resp)
+        return resp_valid
+
     def post_cars_with_resp_model(self, json:dict =  CarRequestPost()):
         response = self.api_client._post(endpoint=self.path, json_payload=asdict(json))
         # assert response.headers['content-typ'] == ['application/json; charset=utf-8 ']

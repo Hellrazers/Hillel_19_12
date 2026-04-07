@@ -1,5 +1,8 @@
 from typing import Any
 
+from pydantic import Field, field_validator, model_validator
+
+from lib.models.base_pydantic import BaseResponseModel, BaseResponseSchema
 from lib.response_model import ResponseModel
 
 
@@ -28,3 +31,14 @@ class CarResponseModel(ResponseModel):
         self.resp_obj = resp.resp_obj
         if resp.data != None:
             self.data = CarsModel(resp.data)
+
+
+
+class CarsRespModelPydantic(BaseResponseSchema):
+    id: int =Field()
+    car_brand_id: int = Field(alias='carBrandId')
+    car_mode_id: int = Field(alias='carModelId')
+
+
+
+

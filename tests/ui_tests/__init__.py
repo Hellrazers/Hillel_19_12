@@ -33,3 +33,9 @@
 #
 # # Отримуємо об'єкт відповіді
 # response_id = response_info.value
+
+
+# dialog_messages = []
+# page.on("dialog", lambda d: [dialog_messages.append(d.message), d.accept()])
+# page.locator("#alert-btn").click()
+# assert "Hello! I am an alert box!" in dialog_messages[0]
