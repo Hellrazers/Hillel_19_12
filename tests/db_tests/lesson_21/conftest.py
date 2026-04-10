@@ -55,6 +55,6 @@ def cursor_con(conn):
     # Отримання результатів запиту
     record = cursor.fetchone()
     print("You are connected to - ", record)
-    yield cursor , conn # conn.commit()
+    yield cursor, conn  # conn.commit()
     conn.rollback()
     cursor.close()
