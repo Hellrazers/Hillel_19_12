@@ -1,4 +1,5 @@
 import logging
+import allure
 from dataclasses import asdict
 
 from lib.models.base_pydantic import BaseResponseModel, ListResponseModel
@@ -21,8 +22,9 @@ class Cars(ApClients):
 
 
     def get_car_by_id_py(self, item_id: str):
-        resp =  self.api_client._get(endpoint=f'{self.path}/{item_id}')
-        resp_valid =  BaseResponseModel[CarsRespModelPydantic].from_response(resp)
+        with allure.step(f'Get car by id: {item_id}'):
+            resp =  self.api_client._get(endpoint=f'{self.path}/{item_id}')
+            resp_valid =  BaseResponseModel[CarsRespModelPydantic].from_response(resp)
         return resp_valid
 
     def get_cars_py(self, params: dict = None):

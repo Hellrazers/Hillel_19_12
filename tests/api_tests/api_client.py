@@ -4,7 +4,7 @@ import os
 import requests
 from dotenv import load_dotenv
 from tests.utils import log_request
-
+import allure
 load_dotenv()
 logger = logging.getLogger("test")
 
@@ -37,9 +37,12 @@ class ApClients:
         # base_url = https://qauto.forstudy.space
         #endpoint = /api/users/current
         our_path= f'{self.base_url}{endpoint}'
+        json_payload = json.dumps( {'Url' : our_path, 'Param': params})
+        allure.attach(json_payload, name='Request Payload', attachment_type=allure.attachment_type.JSON)
         # logger.info(f"-> Method: GET | url: {our_path}")
         response = self.session.get(our_path, params=params)
-
+        json_response = json.dumps({'Url': our_path, 'Param': params})
+        allure.attach(response, name='Response Payload')
         return response
 
     @log_request

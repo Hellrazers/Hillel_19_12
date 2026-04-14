@@ -1,3 +1,4 @@
+import allure
 import pytest
 from assertpy import assert_that
 import sys
@@ -17,6 +18,7 @@ def div_func(a , b):
 @pytest.mark.regression
 @pytest.mark.positive
 @pytest.mark.smoke
+@allure.title('First value {a} second {b} = {result}')
 def test_add_first(a, b, result):
     actual_result = add_func(a, b)
     expected_result = result

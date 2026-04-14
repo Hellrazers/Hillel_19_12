@@ -7,7 +7,7 @@ fake = Faker(locale='uk_UA')
 
 
 # @pytest.mark.skip('jirra-link')
-@pytest.mark.negative
+# @pytest.mark.negative
 def test_create_car_404(api_base):
     car_id = '`'
     api = Cars(api_base)
