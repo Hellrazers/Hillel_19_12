@@ -41,8 +41,8 @@ class ApClients:
         allure.attach(json_payload, name='Request Payload', attachment_type=allure.attachment_type.JSON)
         # logger.info(f"-> Method: GET | url: {our_path}")
         response = self.session.get(our_path, params=params)
-        json_response = json.dumps({'Url': our_path, 'Param': params})
-        allure.attach(response, name='Response Payload')
+        json_response = json.dumps({'response_status': response.status_code, 'Response': response.json()})
+        allure.attach(json_response, name='Response Payload',attachment_type=allure.attachment_type.JSON)
         return response
 
     @log_request
