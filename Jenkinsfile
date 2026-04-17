@@ -39,12 +39,12 @@ pipeline {
             steps {
                 sh '''
                 . venv/bin/activate
-                echo "UI_URL=https://qauto.forstudy.space" > .env
+                echo "UI_URL=${UI_URL}" > .env
                 echo "LOGIN=${USER_EMAIL_LOGIN}" >> .env
                 echo "PASSWORD=${USER_PASSWORD_LOGIN}" >> .env
                 echo "AUTH_BASIC_USER=guest" >> .env
                 echo "AUTH_BASIC_PASSWORD=welcome2qauto" >> .env
-                pytest -m ${params.MARKS} --alluredir=allure-results
+                pytest -m ${MARKS} --alluredir=allure-results
                 '''
             }
         }
