@@ -4,7 +4,7 @@ import requests
 from contract.cars.cars import Cars
 from lib.models.cars.request_car_models import CarRequestPost
 
-
+@pytest.mark.api_test
 def test_get_user_profile(api_base):
     api = api_base
     response = api._get(endpoint='/api/users/profile')
