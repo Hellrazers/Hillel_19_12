@@ -9,7 +9,7 @@ pipeline {
     parameters {
         string(name: 'UI_URL', defaultValue: 'https://qauto.forstudy.space', description: 'Who should I say hello to?')
         choice(name: 'MARKS', choices: ['api_test', 'Two', 'Three'], description: 'Pick something')
-        boolean(name: 'IS_BOOL', description: 'Some description here ')
+        booleanParam(name: 'IS_BOOL', description: 'Some description here ')
     }
     // Використання облікових даних для авторизації доступу до репозиторію
     stages {
@@ -52,7 +52,8 @@ pipeline {
         }
         if [ !IS_BOOL ]; then
          stage('Run tests'){
-         echo 'I dont do nothing'}
+                 echo 'I dont do nothing'
+                 }
                 fi
     }
      post {
