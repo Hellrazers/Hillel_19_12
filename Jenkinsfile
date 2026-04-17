@@ -50,7 +50,7 @@ pipeline {
                 '''
             }
         }
-        if [ !IS_BOOL ]; then
+        if [ IS_BOOL == true ]; then
          stage('Run tests'){
                  echo 'I dont do nothing'
                  }
