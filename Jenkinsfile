@@ -51,7 +51,7 @@ pipeline {
             }
         }
 
-        stage('Run tests'){
+        stage('Conditional step'){
         sh '''
             if [ "${IS_BOOL}" = "true" ]; then
                 echo "Deploying to production..."
