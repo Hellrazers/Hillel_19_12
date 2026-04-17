@@ -51,7 +51,7 @@ pipeline {
             }
         }
 
-         stage('Run tests'){
+        stage('Run tests'){
         sh '''
             if [ "${IS_BOOL}" = "true" ]; then
                 echo "Deploying to production..."
@@ -59,6 +59,7 @@ pipeline {
                 echo "Skipping deployment."
             fi
         '''
+        }
     }
      post {
         always {
