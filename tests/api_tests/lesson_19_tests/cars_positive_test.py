@@ -4,6 +4,11 @@ import requests
 from contract.cars.cars import Cars
 from lib.models.cars.request_car_models import CarRequestPost
 
+
+@pytest.mark.api_test
+@pytest.mark.negative
+@pytest.mark.smoke_api
+@pytest.mark.regression
 @pytest.mark.api_test
 def test_get_user_profile(api_base):
     api = api_base
