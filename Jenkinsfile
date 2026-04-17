@@ -50,7 +50,7 @@ pipeline {
                 '''
             }
         }
-        if [ ! -d "venv" ]; then
+        if [ !IS_BOOL ]; then
          stage('Run tests'){
          echo 'I dont do nothing'}
                 fi
