@@ -9,9 +9,11 @@ pipeline {
     parameters {
         string(name: 'UI_URL', defaultValue: 'https://qauto.forstudy.space', description: 'Who should I say hello to?')
         choice(name: 'MARKS', choices: ['api_test', 'Two', 'Three'], description: 'Pick something')
+        boolean(name: 'IS_BOOL', description: 'Some description here ')
     }
     // Використання облікових даних для авторизації доступу до репозиторію
     stages {
+
         stage('Checkout') {
             steps {
                 // Використання облікових даних для клонування репозиторію
@@ -48,7 +50,10 @@ pipeline {
                 '''
             }
         }
-
+        if [ ! -d "venv" ]; then
+         stage('Run tests'){
+         echo 'I dont do nothing'}
+                fi
     }
      post {
         always {
