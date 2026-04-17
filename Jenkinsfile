@@ -52,6 +52,7 @@ pipeline {
         }
 
         stage('Conditional step'){
+        steps{
         sh '''
             if [ "${IS_BOOL}" = "true" ]; then
                 echo "Deploying to production..."
@@ -59,7 +60,7 @@ pipeline {
                 echo "Skipping deployment."
             fi
         '''
-        }
+        }}
     }
      post {
         always {
